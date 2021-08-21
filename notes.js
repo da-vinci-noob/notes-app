@@ -2,10 +2,20 @@ const fs = require('fs')
 
 const addNote = function (title, body) {
   const notes = loadNotes()
-  notes.push({
-    title: title,
-    body: body,
-  })
+
+  // Check for duplicate Notes
+  const duplicate = notes.find((x) => x.title === title)
+
+  if (duplicate === undefined) {
+    notes.push({
+      title: title,
+      body: body,
+    })
+    console.log('New Note Added!')
+  } else {
+    console.log('Note with title already Exists!')
+  }
+
   saveNotes(notes)
 }
 
