@@ -1,7 +1,7 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-const addNote = function (title, body) {
+const addNote = (title, body) => {
   const notes = loadNotes()
 
   // Check for duplicate Notes
@@ -20,12 +20,10 @@ const addNote = function (title, body) {
   saveNotes(notes)
 }
 
-const removeNote = function (title) {
+const removeNote = (title) => {
   const notes = loadNotes()
 
-  const updatedNotes = notes.filter(function (note) {
-    return note.title !== title
-  })
+  const updatedNotes = notes.filter((note) => note.title !== title)
 
   if (notes.length === updatedNotes.length) {
     console.log(chalk.red(`Note with title: ${chalk.blue(title)} not Found!!!`))
@@ -35,7 +33,7 @@ const removeNote = function (title) {
   }
 }
 
-const loadNotes = function () {
+const loadNotes = () => {
   try {
     const dataBuffer = fs.readFileSync('notes.json')
     const dataJSON = dataBuffer.toString()
@@ -45,7 +43,7 @@ const loadNotes = function () {
   }
 }
 
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
   dataJSON = JSON.stringify(notes)
   fs.writeFileSync('notes.json', dataJSON)
 }
