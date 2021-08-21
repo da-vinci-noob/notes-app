@@ -3,8 +3,21 @@ const yargs = require('yargs')
 yargs.command({
   command: 'add',
   describe: 'Add New Note',
-  handler: function () {
-    console.log('Function will run on add command')
+  builder: {
+    title: {
+      describe: 'Add Note Title',
+      demandOption: true,
+      type: 'string',
+    },
+    body: {
+      describe: 'Add Note Body',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler: function (argv) {
+    console.log('Title:', argv.title)
+    console.log('Body:', argv.body)
   },
 })
 
