@@ -47,8 +47,15 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'Read note',
-  handler() {
-    console.log('Function will run on read command')
+  builder: {
+    title: {
+      describe: 'List Specific Note',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    notesUtil.readNote(argv.title)
   },
 })
 

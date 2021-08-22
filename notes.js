@@ -41,6 +41,21 @@ const removeNote = (title) => {
   }
 }
 
+const readNote = (title) => {
+  const notes = loadNotes()
+
+  const noteFound = notes.find((note) => note.title === title)
+
+  if (noteFound) {
+    console.log(chalk.green.inverse('Listing Found Note'))
+    console.log(
+      `${chalk.blue(noteFound.title)}: ${chalk.green(noteFound.body)}`
+    )
+  } else {
+    console.log(chalk.red('Note with title not Found!'))
+  }
+}
+
 const loadNotes = () => {
   try {
     const dataBuffer = fs.readFileSync('notes.json')
@@ -60,4 +75,5 @@ module.exports = {
   listNotes: listNotes,
   addNote: addNote,
   removeNote: removeNote,
+  readNote: readNote,
 }
