@@ -15,16 +15,15 @@ const addNote = (title, body) => {
   // Check for duplicate Notes
   const duplicate = notes.find((x) => x.title === title)
 
-  if (duplicate === undefined) {
+  if (duplicate) {
+    console.log(chalk.red('Note with title already Exists!'))
+  } else {
     notes.push({
       title: title,
       body: body,
     })
     console.log(chalk.green('New Note Added!'))
-  } else {
-    console.log(chalk.red('Note with title already Exists!'))
   }
-
   saveNotes(notes)
 }
 
