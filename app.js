@@ -40,7 +40,7 @@ yargs.command({
   command: 'list',
   describe: 'List all the notes',
   handler() {
-    console.log('Function will run on list command')
+    notesUtil.listNotes()
   },
 })
 
